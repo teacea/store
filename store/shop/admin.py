@@ -4,6 +4,7 @@ from .models import Item, Group
 
 class ItemAdmin(admin.ModelAdmin):
     list_display = (
+        'pk',
         'name',
         'photo',
         'price',
