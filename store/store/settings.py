@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
-    'contact.apps.ContactConfig'
+    'contact.apps.ContactConfig',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [

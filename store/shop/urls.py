@@ -10,7 +10,9 @@ app_name = 'shop'
 urlpatterns = [
     path('', views.index, name="index"),
     path('group/<slug:slug>/', views.group, name='group'),
-    path('item/<int:item_id>/', views.item_detail, name='item_detail'),
+    path('group/<slug:slug>/item/<int:item_id>/', views.item_detail, name='item_detail'),
+    # path('item/<slug:col_slus>/', views.col, name='collection'),
+
     ]
 if settings.DEBUG:
     urlpatterns += static(

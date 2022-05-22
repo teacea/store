@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="img/favicon.png" type="image/png">
-        <title>ListAshop</title>
+        <title>{% block title %}ListAshop{% endblock %}</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{% static "css/bootstrap.css" %}>
         <link rel="stylesheet" href="{% static "vendors/linericon/style.css" %}">
@@ -19,29 +19,21 @@
         <!-- main css -->
         <link rel="stylesheet" href="{% static "css/style.css" %}">
         <link rel="stylesheet" href="{% static "css/responsive.css" %}">
+        <style>
+            .fig {
+             text-align: center; /* Выравнивание по центру */ 
+            }
+        </style>
     </head>
     <body>
         
         <!--================Header Menu Area =================-->
         <header class="header_area">
-           	<div class="top_menu row m0">
-           		<div class="container">
-					<div class="float-left">
-						<a href="mailto:tea-cea@yandex.ru">tea-cea@yandex.ru</a>
-					</div>
-                    
-					<div class="float-right">
-						<ul class="header_social">
-							<li><a href="https://t.me/ertyjjknbcxv"><i class="fa fa-comment"></i></a></li>
-						</ul>
-					</div>
-           		</div>	
-           	</div>	
             <div class="main_menu">
             	<nav class="navbar navbar-expand-lg navbar-light main_box">
 					<div class="container">
 						<!-- Brand and toggle get grouped for better mobile display -->
-						<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+						<a class="navbar-brand logo_h" href="index.html"><img src="{% static "img/logo.png"%}" alt=""></a>
 						
 					</div>
             	</nav>

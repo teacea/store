@@ -22,12 +22,7 @@ class Group(models.Model):
 
 
 class Item(models.Model):
-    collection = models.CharField(
-        verbose_name='collection_of_items',
-        max_length=50,
-        null=True,
-        blank=True
-    )
+    
     name = models.CharField(
         verbose_name='name_of_items',
         max_length=50,
@@ -66,3 +61,15 @@ class Item(models.Model):
         ]
     def __str__(self):
         return self.name[:15]
+
+
+class Collection(models.Model):
+    item = models.ForeignKey(
+        Item,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL
+    )
+    name = models.CharField(
+        max_length=50,
+    )

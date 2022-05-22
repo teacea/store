@@ -1237,6 +1237,11 @@ button:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.thumb img  {  
+  margin-right: 90px; /* Отступ справа */
+  margin-bottom: 10px; /* Отступ снизу */
+}
+
 
 .blog_right_sidebar .newsletter_widget .bbtns {
   background: #c5322d;
@@ -1325,12 +1330,6 @@ button:focus {
   border-radius: 0;
 }
 
-.blog-pagination .page-link:hover {
-  color: #fff;
-  text-decoration: none;
-  background-color: #c5322d;
-  border-color: #eee;
-}
 
 /*============ Start Blog Single Styles  =============*/
 .single-post-area .social-links {

@@ -8,6 +8,7 @@ def index(request):
     template = "shop/index.html"
     title = "Последние записи"
     item = Item.objects.all()
+    items = Item.objects.all()
     keyword = request.GET.get("q", None)
 
     if keyword:
@@ -23,6 +24,7 @@ def index(request):
     context = {
         "item": item,
         "title": title,
+        "items": item,
         # "page_obj": page_obj,
         "keyword": keyword
     }
