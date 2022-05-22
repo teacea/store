@@ -39,7 +39,7 @@
 											{{ item.name }}
 											{{ item.price }}
 											
-											{% thumbnail item.photo "100x100" crop="center" upscale=True as im %}
+											{% thumbnail item.photo "280x263" crop="center" upscale=True as im %}
     											<img class="card-img my-2" src="{{ im.url }}">
   											{% endthumbnail %}
 											  

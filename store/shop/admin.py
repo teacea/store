@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from .models import Item, Group
+from .models import Item, Group, Collection
 
 class ItemAdmin(admin.ModelAdmin):
     list_display = (
@@ -9,13 +9,39 @@ class ItemAdmin(admin.ModelAdmin):
         'photo',
         'price',
         'group',
-        'created'
+        'created',
+        'collection',
     )
-    list_editable = ('group',)
+    list_editable = ('group','collection','name','price','photo')
     search_fields = ('name',)
     list_filter = ('created',)
     empty_value_display = '-пусто-'
 
 
+class CollectionAdmin(admin.ModelAdmin):
+    list_display = (
+        'pk',
+        'title',
+        'slug',
+        'description',
+    )
+    list_editable = ('title','slug','description',)
+    search_fields = ('title',)
+    list_filter = ('title',)
+    empty_value_display = '-пусто-'
+
+class GroupAdmin(admin.ModelAdmin):
+    list_display = (
+        'pk',
+        'title',
+        'slug',
+        'description',
+    )
+    list_editable = ('title',)
+    search_fields = ('title',)
+    list_filter = ('title',)
+    empty_value_display = '-пусто-'
+
 admin.site.register(Item, ItemAdmin)
-admin.site.register(Group)
+admin.site.register(Group, GroupAdmin)
+admin.site.register(Collection, CollectionAdmin)

@@ -1,6 +1,25 @@
 from django.db import models
 
     
+class Collection(models.Model):
+    title = models.CharField(
+        max_length=150,
+        help_text='input title here',
+        verbose_name='title of group',
+    )
+    slug = models.SlugField(
+        'slug of group',
+        help_text='input a unique url-name of group',
+        unique=True)
+    description = models.TextField(
+        'Brief description of the item group',
+        max_length=150,
+        help_text='input a description here'
+    )
+
+    def __str__(self):
+        return self.title
+
 class Group(models.Model):
     title = models.CharField(
         max_length=150,
@@ -22,7 +41,23 @@ class Group(models.Model):
 
 
 class Item(models.Model):
-    
+    collection = models.ForeignKey(
+        Collection,
+        null=True,
+        related_name='item',
+        on_delete=models.CASCADE,
+        verbose_name='collections of items',
+        
+    )
+    group = models.ForeignKey(
+        Group,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name='item',
+        verbose_name='group of items',
+        
+    )
     name = models.CharField(
         verbose_name='name_of_items',
         max_length=50,
@@ -40,14 +75,10 @@ class Item(models.Model):
     price = models.PositiveIntegerField(
         verbose_name='price'
     )
-    group = models.ForeignKey(
-        Group,
+    old_price = models.PositiveIntegerField(
+        verbose_name='price',
         blank=True,
-        null=True,
-        on_delete=models.CASCADE,
-        related_name='item',
-        verbose_name='group of items',
-        
+        null=True
     )
     created = models.DateTimeField(
         verbose_name='a date of created',
@@ -63,13 +94,3 @@ class Item(models.Model):
         return self.name[:15]
 
 
-class Collection(models.Model):
-    item = models.ForeignKey(
-        Item,
-        blank=True,
-        null=True,
-        on_delete=models.SET_NULL
-    )
-    name = models.CharField(
-        max_length=50,
-    )
