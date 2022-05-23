@@ -11,7 +11,7 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('group/<slug:slug>/', views.group, name='group'),
     path('group/<slug:slug>/item/<int:item_id>/', views.item_detail, name='item_detail'),
-    # path('item/<slug:col_slus>/', views.col, name='collection'),
+    path('collection/<slug:slug>/', views.col, name='collection'),
 
     ]
 if settings.DEBUG:

@@ -10,7 +10,7 @@
 						<div class="col-lg-5">
 							<h3>Georgia Helmet <br />Collections!</h3>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-							<a class="white_bg_btn" href="#">View Collection</a>
+							<a href="{% url 'shop:collection' collection.slug %}">View Collection</a>
 						</div>
 						<div class="col-lg-7">
 							<img src="{% static "img/banner/helmat.png" %}"
@@ -35,15 +35,22 @@
 							<div class="col-lg-3 col-md-4 col-sm-6">
 								<div class="f_p_item">
 									<div class="f_p_img">
-										{% for item in items %}
-											{{ item.name }}
-											{{ item.price }}
-											
-											{% thumbnail item.photo "280x263" crop="center" upscale=True as im %}
-    											<img class="card-img my-2" src="{{ im.url }}">
-  											{% endthumbnail %}
-											  
-										{% endfor %}
+										<div class="f_social">
+											{% for item in items %}
+												{% thumbnail item.photo "280x263" crop="center" upscale=True as im %}
+													<img class="card-img my-2" src="{{ im.url }}">
+												{% endthumbnail %}
+												<ul>
+													<li style="display: inline-block; font-family: sans-serif;">
+														<h3>  {{ item.name }}</h3>
+													</li>
+													<li style="display: inline-block; font-family: sans-serif;">
+														<h4>${{ item.price }} <h4> 
+													</li>
+												</ul>
+												
+											{% endfor %}
+											</div>
 										<div class="p_icon">
 											<a href="#"><i class="lnr lnr-heart"></i></a>
 											<a href="#"><i class="lnr lnr-cart"></i></a>

@@ -18,7 +18,7 @@ class Collection(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return self.slug
 
 class Group(models.Model):
     title = models.CharField(
@@ -76,7 +76,7 @@ class Item(models.Model):
         verbose_name='price'
     )
     old_price = models.PositiveIntegerField(
-        verbose_name='price',
+        verbose_name='old_price',
         blank=True,
         null=True
     )

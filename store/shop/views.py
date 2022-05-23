@@ -1,15 +1,16 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Item, Group
+from .models import Item, Group, Collection
 # from .utilities import paginator
 
 
 def index(request):
     template = "shop/index.html"
-    title = "Последние записи"
-    item = Item.objects.all()
+    
+    item = Item.objects.all()[:5]
     items = Item.objects.all()
     keyword = request.GET.get("q", None)
+    collection = get_object_or_404(Collection, slug='new')
 
     if keyword:
         item = list((Item.objects.select_related('group')
@@ -23,8 +24,8 @@ def index(request):
     # page_obj = paginator(request, item)
     context = {
         "item": item,
-        "title": title,
-        "items": item,
+        "collection": collection,
+        "items": items,
         # "page_obj": page_obj,
         "keyword": keyword
     }
@@ -44,8 +45,16 @@ def group(request, slug):
     }
     return render(request, template, context)
 
-def item_detail(request, post_id):
+def item_detail(request, item_id):
     template = "shop/item_detail.html"
-    item = get_object_or_404(Item, id=post_id)
+    item = get_object_or_404(Item, id=item_id)
     context = {"item": item}
+    return render(request, template, context)
+
+def col(request,slug):
+    template = "shop/item_detail.html"
+    collection = get_object_or_404(Collection, title='new')
+    item = 'x'
+    context = {"item": item,
+                "collection":collection}
     return render(request, template, context)

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
     'contact.apps.ContactConfig',
+    'user.apps.UserConfig',
     'sorl.thumbnail',
 ]
 
