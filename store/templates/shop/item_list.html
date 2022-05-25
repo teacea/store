@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% load thumbnail %}
+{% block content%}
+
+        <!--================Home Banner Area =================-->
+        <section class="home_banner_area">
+            <div class="banner_inner d-flex align-items-center">
+				<div class="container">
+					<div class="banner_content row">
+						<div class="col-lg-5">
+							<h3>{{ collection }} <br />Collections!</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+						</div>
+						<div class="col-lg-7">
+                            {% thumbnail collection.image "500x500" crop="center" upscale=True as im %}
+								<img class="card-img my-2" src="{{ im.url }}">
+							{% endthumbnail %}
+						</div>
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================End Home Banner Area =================-->
+        
+        
+        <!--================Latest Product Area =================-->
+        <section class="feature_product_area latest_product_area">
+        	<div class="main_box">
+				<div class="container">
+					<div class="feature_product_inner">
+						<div class="main_title">
+							<h2>Latest Products</h2>
+							<p>Who are in extremely love with eco friendly system.</p>
+						</div>
+						<div class="latest_product_inner row">
+							<div class="col-lg-3 col-md-4 col-sm-6">
+								<div class="f_p_item">
+									<div class="f_p_img">
+										<div class="f_social">
+											{% for item in items %}
+												{% thumbnail item.photo "280x263" crop="center" upscale=True as im %}
+													<img class="card-img my-2" src="{{ im.url }}">
+												{% endthumbnail %}
+												<ul>
+													<li style="display: inline-block; font-family: sans-serif;">
+														<h3>  {{ item.name }}</h3>
+													</li>
+													<li style="display: inline-block; font-family: sans-serif;">
+														<h4>${{ item.price }} <h4> 
+													</li>
+												</ul>
+												
+											{% endfor %}
+											</div>
+										<div class="p_icon">
+											<a href="#"><i class="lnr lnr-heart"></i></a>
+											<a href="#"><i class="lnr lnr-cart"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+        	</div>
+        </section>
+        <!--================End Latest Product Area =================-->
+{% endblock %}      

@@ -1,5 +1,12 @@
 from django.db import models
 
+VALUES = (
+    ('1','1'),
+    ('2','2'),
+    ('3','3'),
+    ('4','4'),
+    ('5','5')
+    )
     
 class Collection(models.Model):
     title = models.CharField(
@@ -15,6 +22,12 @@ class Collection(models.Model):
         'Brief description of the item group',
         max_length=150,
         help_text='input a description here'
+    )
+    image = models.ImageField(
+        verbose_name='photo_item',
+        upload_to='img',
+        blank=True,
+        null=True
     )
 
     def __str__(self):
@@ -83,7 +96,11 @@ class Item(models.Model):
     created = models.DateTimeField(
         verbose_name='a date of created',
         auto_now_add=True)
-
+    values = models.CharField(
+        verbose_name='name_of_items',
+        max_length=50,
+        choices=VALUES
+    )
 
     class Meta:
         ordering = ['-created']

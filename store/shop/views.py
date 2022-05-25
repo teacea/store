@@ -1,6 +1,7 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item, Group, Collection
+from .forms  import ItemForm
 # from .utilities import paginator
 
 
@@ -33,28 +34,35 @@ def index(request):
     return render(request, template, context)
 
 def group(request, slug):
-    template = "shop/item_list.html"
+    template = "shop/group_list.html"
     group = get_object_or_404(Group, slug=slug)
-    item = Item.objects.filter(group=group).all()
+    items = Item.objects.filter(group=group).all()
+
     title = f'group of {slug}'
     # page_obj = paginator(request, item)
     context = {
         "group": group,
+        "items": items,
        # "page_obj": page_obj,
         "title": title
     }
     return render(request, template, context)
 
-def item_detail(request, item_id):
+def item_detail(request, slug, item_id):
     template = "shop/item_detail.html"
     item = get_object_or_404(Item, id=item_id)
-    context = {"item": item}
+    form = ItemForm()
+    context = {"item": item,
+                "form": form
+    }
     return render(request, template, context)
 
 def col(request,slug):
-    template = "shop/item_detail.html"
-    collection = get_object_or_404(Collection, title='new')
-    item = 'x'
+    template = "shop/item_list.html" 
+    collection = get_object_or_404(Collection, slug=slug)
+    items = Item.objects.all()
+    item = Item.objects.filter(collection=collection)
     context = {"item": item,
+                "items": item,
                 "collection":collection}
     return render(request, template, context)

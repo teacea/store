@@ -24,8 +24,9 @@ class CollectionAdmin(admin.ModelAdmin):
         'title',
         'slug',
         'description',
+        'image',
     )
-    list_editable = ('title','slug','description',)
+    list_editable = ('image','title','slug','description',)
     search_fields = ('title',)
     list_filter = ('title',)
     empty_value_display = '-пусто-'
